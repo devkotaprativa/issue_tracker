@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    
     @project = Project.new(project_params)
     @project.start_date = params["project"][:start_date]
     @project.target_end_date = params["project"][:target_end_date]
@@ -25,10 +24,22 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
   def destroy
   end
 
   def update
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+      flash[:notice] = "Succeessfully Updated"
+      redirect_to projects_path
+    else
+      flash[:alert] = "Sorry the update failed"
+      redirect_to projects_path
+    end
   end
 
   private
