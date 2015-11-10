@@ -1,15 +1,5 @@
 Rails.application.routes.draw do
-  get 'projects/index'
-
-  get 'projects/show'
-
-  get 'projects/new'
-
-  get 'projects/create'
-
-  get 'projects/destroy'
-
-  get 'projects/update'
+  resources :projects
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

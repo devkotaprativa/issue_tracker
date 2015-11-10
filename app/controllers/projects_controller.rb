@@ -1,14 +1,18 @@
 class ProjectsController < ApplicationController
   def index
+    @projects = Project.all
   end
 
   def show
   end
 
   def new
+    @project = Project.new
   end
 
   def create
+    @project = Project.new(project_params)
+    @project.save
   end
 
   def destroy
@@ -16,4 +20,5 @@ class ProjectsController < ApplicationController
 
   def update
   end
+  
 end

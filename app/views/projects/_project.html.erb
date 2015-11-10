@@ -1,0 +1,23 @@
+<%= form_for [@project] do |p|%>
+	<ul>
+    <% @project.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+  <p>
+  	<%= p.label :Project_name %><br/>
+    <%= p.text_field :project_name, :required => true%>
+  </p>
+  <p>
+  	<%= p.label :Start_date %><br/>
+    <%= p.text_field :start_date, :required => true%>
+  </p>
+  <p>
+  	<%= p.label :Target_end_date %><br/>
+    <%= p.text_field :target_end_date, :required => true%>
+  </p>
+  <p>
+  	<%= p.label :final_end_date %><br/>
+    <%= p.text_field :final_end_date, :required => true%>
+  </p>
+ <% end %>
