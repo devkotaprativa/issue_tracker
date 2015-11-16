@@ -50,6 +50,30 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def show_members
+    @users = User.all
+    @project_id = params[:project_id]
+  end
+
+  def add_members
+    ids = params[:user_ids]
+    project_id = params[:project_id]
+    if ids.present?
+      ids.each do|id|
+       if Assignment.create(:user_id => id, :project_id => project_id)
+        flash[:notice] = "Succeessfully added the members"
+        redirect_to projects_path
+      else
+        flash[:alert] = "Could not add the members"
+        redirect_to projects_path
+      end
+      end
+    else
+      flash[:notice] = "Please select at least one member"
+      redirect_to projects_show_members_path
+    end
+  end
+
   def home
     
   end

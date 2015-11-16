@@ -9,6 +9,7 @@
 					End Date: <%= p.final_end_date %><br>
 					<%= link_to "Edit Project", edit_project_path(p.id), class: "btn btn-primary"%>
 					<%= link_to "Delete", project_path(p.id),  class: "btn btn-primary", method: :delete, data: {confirm: "Really delete the post?"} %>
+					<%= link_to "Add Member", projects_show_members_path( :project_id => p.id),method: :post, class: "btn btn-primary"%>
 				</p>
 			</div>
 		<% end %>

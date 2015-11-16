@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :projects
+  post 'projects/show_members'
+  post 'projects/add_members'
 
   devise_for :users
   
