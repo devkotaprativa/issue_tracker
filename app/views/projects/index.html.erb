@@ -1,2 +1,17 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<div class = "container-fluid">
+	<div class = "row">
+		<% @projects.each do |p| %>
+			<div class = "col-sm-4">
+				<p>
+					Name: <%= p.project_name %><br>
+					Start Date: <%= p.start_date %><br>
+					Target Date: <%= p.target_end_date %><br>
+					End Date: <%= p.final_end_date %><br>
+					<%= link_to "Edit Project", edit_project_path(p.id), class: "btn btn-primary"%>
+					<%= link_to "Delete", project_path(p.id),  class: "btn btn-primary", method: :delete, data: {confirm: "Really delete the post?"} %>
+				</p>
+			</div>
+		<% end %>
+	</div>
+	<%= link_to "Create New Project", new_project_path%>
+</div>

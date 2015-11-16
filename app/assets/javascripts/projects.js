@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on("page:change  ",function(){
   $('.datepicker').datepicker({
   	 orientation: "top",
   	 autoclose: true,

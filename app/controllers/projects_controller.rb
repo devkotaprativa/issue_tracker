@@ -29,6 +29,14 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:id])
+    if @project.destroy
+      flash[:notice] = "successfully deleted"
+      redirect_to projects_path
+    else
+      flash[:notice] = "Could not delete the project"
+      redirect_to projects_path
+    end
   end
 
   def update
@@ -40,6 +48,10 @@ class ProjectsController < ApplicationController
       flash[:alert] = "Sorry the update failed"
       redirect_to projects_path
     end
+  end
+
+  def home
+    
   end
 
   private
