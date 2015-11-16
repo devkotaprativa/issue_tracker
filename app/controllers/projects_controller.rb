@@ -60,13 +60,18 @@ class ProjectsController < ApplicationController
     project_id = params[:project_id]
     if ids.present?
       ids.each do|id|
-       if Assignment.create(:user_id => id, :project_id => project_id)
-        flash[:notice] = "Succeessfully added the members"
-        redirect_to projects_path
-      else
-        flash[:alert] = "Could not add the members"
-        redirect_to projects_path
-      end
+        if Assignment.where(:user_id => id, :project_id => project_id).blank?
+           if Assignment.create(:user_id => id, :project_id => project_id)
+            flash[:notice] = "Succeessfully added the members"
+            redirect_to projects_path
+          else
+            flash[:alert] = "Could not add the members"
+            redirect_to projects_path
+          end
+        else 
+          flash[:alert] = "Slected member is already assigned to the project."
+          redirect_to projects_path
+        end
       end
     else
       flash[:notice] = "Please select at least one member"
