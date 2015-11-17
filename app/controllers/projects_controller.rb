@@ -1,6 +1,9 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_user!
   def index
-    @projects = Project.all
+    
+    @assigned_projects = current_user.projects
+    @projects = Project.where(:created_by => current_user.id)
   end
 
   def show
@@ -18,6 +21,7 @@ class ProjectsController < ApplicationController
     @project.start_date = params["project"][:start_date]
     @project.target_end_date = params["project"][:target_end_date]
     @project.final_end_date = params["project"][:final_end_date]
+    @project.created_by = current_user.id
     if @project.save
       flash[:notice] = "Project successfully created"
       redirect_to projects_path
@@ -66,16 +70,18 @@ class ProjectsController < ApplicationController
         if Assignment.where(:user_id => id, :project_id => project_id).blank?
            if Assignment.create(:user_id => id, :project_id => project_id)
             flash[:notice] = "Succeessfully added the members"
-            redirect_to projects_path
+            #redirect_to projects_path
           else
             flash[:alert] = "Could not add the members"
-            redirect_to projects_path
+            #redirect_to projects_path
           end
         else 
           flash[:alert] = "Slected member is already assigned to the project."
-          redirect_to projects_path
+          #redirect_to projects_path
         end
+        #redirect_to projects_path
       end
+      redirect_to projects_path
     else
       flash[:notice] = "Please select at least one member"
       redirect_to projects_show_members_path

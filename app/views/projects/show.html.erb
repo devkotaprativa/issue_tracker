@@ -33,7 +33,7 @@
 			<table class = "table table-hover">
 				<thead>
 					<tr>
-						<th>Assigned Members</th>
+						<th>Project Members</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -65,7 +65,10 @@
 							<td><%= i.deadline%></td>
 							<td><%= i.priority%></td>
 							<td><%= i.status%></td>
-							<td><%= link_to "Assign", project_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id),method: :post, class: "btn btn-primary"%></td>
+							<td><% if @project.created_by == current_user.id.to_s%>
+									<%= link_to "Assign", project_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id),method: :post, class: "btn btn-primary"%>
+									<% end %>
+							</td>
 						</tr>
 					<% end %>
 				</tbody>
