@@ -4,6 +4,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
+    @members = @project.users
   end
 
   def new

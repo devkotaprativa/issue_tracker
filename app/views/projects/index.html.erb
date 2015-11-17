@@ -2,16 +2,33 @@
 	<div class = "row">
 		<% @projects.each do |p| %>
 			<div class = "col-sm-4">
-				<p>
-					Name: <%= p.project_name %><br>
-					Start Date: <%= p.start_date %><br>
-					Target Date: <%= p.target_end_date %><br>
-					End Date: <%= p.final_end_date %><br>
-					Assigned Members: <%= p.users.count%><br>
-					<%= link_to "Edit Project", edit_project_path(p.id), class: "btn btn-primary"%>
-					<%= link_to "Delete", project_path(p.id),  class: "btn btn-primary", method: :delete, data: {confirm: "Really delete the post?"} %>
-					<%= link_to "Add Member", projects_show_members_path( :project_id => p.id),method: :post, class: "btn btn-primary"%>
-				</p>
+				<table class="table table-hover">
+				
+					<thead>
+						<tr>
+						<th>Name: <%= p.project_name %></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class = "info">
+							<td>Start Date: <%= p.start_date %></td>
+						</tr>
+						<tr class = "info">
+							<td>Target Date: <%= p.target_end_date %></td>
+						</tr>
+						<tr class = "info">
+							<td>End Date: <%= p.final_end_date %></td>
+						</tr>
+						<tr class = "info">
+							<td>Assigned Members: <%= p.users.count%></td>
+						</tr>
+						<tr class = "info">
+							<td><%= link_to "View Details", project_path(p.id), class: "btn btn-primary"%>
+							<%= link_to "Delete", project_path(p.id),  class: "btn btn-primary", method: :delete, data: {confirm: "Really delete the post?"} %>
+							<%= link_to "Add Member", projects_show_members_path( :project_id => p.id),method: :post, class: "btn btn-primary"%></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		<% end %>
 	</div>

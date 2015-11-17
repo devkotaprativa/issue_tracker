@@ -1,2 +1,51 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<div class = "container-fluid">
+	<div class = "row">
+		<div class = "col-sm-6">
+			<table class="table table-hover">
+				
+					<thead>
+						<tr>
+						<th>Name: <%= @project.project_name %></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class = "info">
+							<td>Start Date: <%= @project.start_date %></td>
+						</tr>
+						<tr class = "info">
+							<td>Target Date: <%= @project.target_end_date %></td>
+						</tr>
+						<tr class = "info">
+							<td>End Date: <%= @project.final_end_date %></td>
+						</tr>
+						<tr class = "info">
+							<td>Number of Assigned Members: <%= @members.count%></td>
+						</tr>
+						<tr class = "info">
+							<td><%= link_to "Edit", edit_project_path(@project.id), class: "btn btn-primary"%>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+		<div class = "col-sm-6">
+			<table class = "table table-hover">
+				<thead>
+					<tr>
+						<th>Assigned Members</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @members.each do |i| %>
+						<tr class = "success">
+							<td><%= i.email%></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class = "row">
+		<div>
+		</div>
+	</div>
+</div>
