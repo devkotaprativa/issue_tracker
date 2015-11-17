@@ -27,7 +27,7 @@
 							<tr class = "info">
 								<td><%= link_to "View Details", project_path(p.id), class: "btn btn-primary"%>
 								<%= link_to "Delete", project_path(p.id),  class: "btn btn-primary", method: :delete, data: {confirm: "Really delete the post?"} %>
-								<%= link_to "Add Member", projects_show_members_path( :project_id => p.id),method: :post, class: "btn btn-primary"%></td>
+								<%= link_to "Add Member", show_members_projects_path, class: "btn btn-primary"%></td>
 							</tr>
 						</tbody>
 					</table>

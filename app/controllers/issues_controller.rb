@@ -62,7 +62,7 @@ class IssuesController < ApplicationController
       end
     else
       flash[:notice] = "Please select at least one member"
-      redirect_to project_issues_show_members_path
+      redirect_to project_issue_issues_show_members_path(project_id, issue_id)
     end
   end
 

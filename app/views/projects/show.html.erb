@@ -21,8 +21,9 @@
 						<td>Number of Assigned Members: <%= @members.count%></td>
 					</tr>
 					<tr class = "info">
-						<td>
+						<td><% if @project.created_by == current_user.id.to_s %>
 							<%= link_to "Edit", edit_project_path(@project.id), class: "btn btn-primary"%>
+							<% end %>
 							<%= link_to "Add Issue", new_project_issue_path(@project.id), class: "btn btn-primary"%>
 						</td>
 					</tr>
@@ -70,7 +71,7 @@
 									<% end %>
 							</td>
 							<td><% if created_by(@project)%>
-									<%= link_to "Assign", project_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id),method: :post, class: "btn btn-primary"%>
+									<%= link_to "Assign", project_issue_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id), class: "btn btn-primary"%>
 									<% end %>
 							</td>
 						</tr>

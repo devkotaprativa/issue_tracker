@@ -4,10 +4,13 @@ Rails.application.routes.draw do
     resources :issues do
       post 'issues/add_members'
       post 'issues/complete'
+      get 'issues/show_members'
     end
-    post 'issues/show_members'
+    collection do
+      get 'show_members'
+    end
   end
-  post 'projects/show_members'
+  
   post 'projects/add_members'
 
   devise_for :users
