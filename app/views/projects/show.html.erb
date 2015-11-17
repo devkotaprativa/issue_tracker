@@ -55,6 +55,7 @@
 						<th>Deadline</th>
 						<th>Priority</th>
 						<th>Status</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -64,6 +65,7 @@
 							<td><%= i.deadline%></td>
 							<td><%= i.priority%></td>
 							<td><%= i.status%></td>
+							<td><%= link_to "Assign", project_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id),method: :post, class: "btn btn-primary"%></td>
 						</tr>
 					<% end %>
 				</tbody>

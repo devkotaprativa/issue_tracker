@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :issues
+    post 'issues/show_members'
+    post 'issues/add_members'
   end
   post 'projects/show_members'
   post 'projects/add_members'
