@@ -40,7 +40,6 @@ class IssuesController < ApplicationController
   end
 
   def add_members
-    binding.pry
     ids = params[:user_ids]
     issue_id = params[:issue_id]
     project_id = params[:project_id]
@@ -65,6 +64,13 @@ class IssuesController < ApplicationController
       flash[:notice] = "Please select at least one member"
       redirect_to project_issues_show_members_path
     end
+  end
+
+  def complete
+    @issue = Issue.find(params[:issue_id])
+    @issue.completed!
+    redirect_to project_path(@issue.project_id)
+    
   end
 
   private
