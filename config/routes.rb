@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'issues/index'
+
+  get 'issues/show'
+
+  get 'issues/new'
+
+  get 'issues/edit'
+
+  get 'issues/update'
+
+  get 'issues/destroy'
+
+  get 'issues/create'
+
   resources :projects
   post 'projects/show_members'
   post 'projects/add_members'
