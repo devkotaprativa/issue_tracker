@@ -20,5 +20,19 @@ class IssuesController < ApplicationController
   end
 
   def create
+    @project = Project.find(params[:project_id])
+    @issue = Issue.new(set_params)
+    if @issue.save
+      flash[:notice] = "Issue successfully created"
+      redirect_to project_path(@project.id)
+    else
+      flash[:notice] = "Issue was not created"
+      redirect_to project_path(@project.id)
+    end
+  end
+
+  private
+  def set_params
+    params.require(:issue).permit(:title, :description, :deadline, :priority, :status)
   end
 end
