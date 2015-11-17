@@ -6,6 +6,8 @@ class IssuesController < ApplicationController
   end
 
   def new
+    @project = Project.find(params[:project_id])
+    @issue = Issue.new
   end
 
   def edit
