@@ -1,6 +1,7 @@
 <div class = "container available-user">
 	<h2>Available users</h2>
-	<%= form_tag project_issues_add_members_path(@project.id, @issue_id), method: :post do%>
+	<% binding.pry%>
+	<%= form_tag project_issue_issues_add_members_path(@project.id, @issue_id), method: :post do%>
 		<% @users.each do |u| %>
 			<%= check_box_tag "user_ids[]", u.id%>
 			<%= u.email %><br>

@@ -40,14 +40,16 @@ class IssuesController < ApplicationController
   end
 
   def add_members
+    binding.pry
     ids = params[:user_ids]
     issue_id = params[:issue_id]
     project_id = params[:project_id]
+    @issue = Issue.find(params[:issue_id])
     if ids.present?
       ids.each do|id|
-        binding.pry
-        if UserIssue.where(:user_id => id, :issue_id => issue_id).blank?
-           if UserIssue.create(:user_id => id, :issue_id => issue_id)
+        if UserIssue.where(:user_id => id, :issue_id => @issue.id).blank?
+           if UserIssue.create(:user_id => id, :issue_id => @issue.id)
+            @issue.on_process!
             flash[:notice] = "Succeessfully added the members"
             redirect_to project_path(project_id)
           else
