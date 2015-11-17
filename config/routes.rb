@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :issues do
       post 'issues/add_members'
+      post 'issues/complete'
     end
     post 'issues/show_members'
   end

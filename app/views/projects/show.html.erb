@@ -64,8 +64,10 @@
 							<td><%= i.title%></td>
 							<td><%= i.deadline%></td>
 							<td><%= i.priority%></td>
-							<td><%= i.status%></td>
-							<td><% if @project.created_by == current_user.id.to_s%>
+							<td><%= i.status%><br>
+									<%= link_to "set complete",project_issue_issues_complete_path(@project.id, i.id)%>
+							</td>
+							<td><% if created_by(@project)%>
 									<%= link_to "Assign", project_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id),method: :post, class: "btn btn-primary"%>
 									<% end %>
 							</td>
