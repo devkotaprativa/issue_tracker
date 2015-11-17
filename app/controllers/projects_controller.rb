@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @members = @project.users
+    @issue = @project.issues
   end
 
   def new
