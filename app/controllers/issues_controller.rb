@@ -23,6 +23,7 @@ class IssuesController < ApplicationController
     @project = Project.find(params[:project_id])
     @issue = Issue.new(set_params)
     @issue.project_id = @project.id
+    @issue.status = 0
     if @issue.save
       flash[:notice] = "Issue successfully created"
       redirect_to project_path(@project.id)
