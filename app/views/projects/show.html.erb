@@ -70,7 +70,10 @@
 									<% if is_onprocess(i) and is_assigned(i)%>
 										<%= link_to "set complete",project_issue_issues_complete_path(@project.id, i.id), method: :post%>
 									<% end %>
-									<%= link_to "set processing",project_issue_issues_processing_path(@project.id, i.id), method: :post%>
+									
+									<% if is_pending(i) and is_assigned(i)%>
+										<%= link_to "set processing",project_issue_issues_processing_path(@project.id, i.id)%>
+									<%end%>
 							</td>
 							<td><% if created_by(@project)%>
 									<%= link_to "Assign", project_issue_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id), class: "btn btn-primary"%>

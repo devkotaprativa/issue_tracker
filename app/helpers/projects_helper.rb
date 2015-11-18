@@ -7,14 +7,22 @@ module ProjectsHelper
 		issue.status == "processing"		
 	end
 
+	def is_pending issue
+		issue.status == "pending"
+	end
+
 	def is_assigned issue
-		users = issue.users
-		users.each do|u|
-			if u.id == current_user.id
-				return true
-			else
-				return false
+		if issue.users.present?
+			users = issue.users
+			users.each do|u|
+				if u.id == current_user.id
+					return true
+				else
+					return false
+				end
 			end
+		else
+			return false
 		end
 	end
 end

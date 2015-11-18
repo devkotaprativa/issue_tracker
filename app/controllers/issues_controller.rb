@@ -48,7 +48,6 @@ class IssuesController < ApplicationController
       ids.each do|id|
         if UserIssue.where(:user_id => id, :issue_id => @issue.id).blank?
            if UserIssue.create(:user_id => id, :issue_id => @issue.id)
-            @issue.processing!
             flash[:notice] = "Succeessfully added the members"
             redirect_to project_path(project_id)
           else
