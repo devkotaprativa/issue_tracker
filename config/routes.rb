@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       root :to => 'projects#index'
     end
     unauthenticated :user do
-      root :to => 'projects#index', as: :unauthenticated_root
+      root :to => 'projects#home', as: :unauthenticated_root
     end
   end
 end
