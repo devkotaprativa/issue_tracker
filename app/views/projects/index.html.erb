@@ -2,10 +2,10 @@
 	<%= link_to "Create New Project", new_project_path, class: "btn btn-primary"%>
 	<div class = "row">
 		<% if @projects.present? %>
-			<h3>  Your Projects</h3>
+			<div class = "issue"><h3>Your Projects</h3></div>
 			<% @projects.each do |p| %>
 				<div class = "col-sm-4">
-					<table class="table table-hover">
+					<table class="table table-hover project">
 					
 						<thead>
 							<tr>
@@ -13,19 +13,19 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class = "info">
+							<tr>
 								<td>Start Date: <%= p.start_date %></td>
 							</tr>
-							<tr class = "info">
+							<tr>
 								<td>Target Date: <%= p.target_end_date %></td>
 							</tr>
-							<tr class = "info">
+							<tr>
 								<td>End Date: <%= p.final_end_date %></td>
 							</tr>
-							<tr class = "info">
+							<tr>
 								<td>Assigned Members: <%= p.users.count%></td>
 							</tr>
-							<tr class = "info">
+							<tr>
 								<td><%= link_to "View Details", project_path(p.id), class: "btn btn-primary"%>
 								<%= link_to "Delete", project_path(p.id),  class: "btn btn-primary", method: :delete, data: {confirm: "Really delete the post?"} %>
 								<%= link_to "Add Member", show_members_projects_path, class: "btn btn-primary"%></td>
@@ -38,29 +38,29 @@
 	</div>
 	<div class = "row">
 		<% if @assigned_projects.present? %>
-			<h3>  Assigned Projects</h3>
+			<div class = "issue"><h3>Assigned Projects</h3></div>
 			<% @assigned_projects.each do |p| %>
 				<div class = "col-sm-4">
-					<table class="table table-hover">
+					<table class="table table-hover project">
 						<thead>
 							<tr>
 							<th>Name: <%= p.project_name %></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class = "info">
+							<tr>
 								<td>Start Date: <%= p.start_date %></td>
 							</tr>
-							<tr class = "info">
+							<tr>
 								<td>Target Date: <%= p.target_end_date %></td>
 							</tr>
-							<tr class = "info">
+							<tr>
 								<td>End Date: <%= p.final_end_date %></td>
 							</tr>
-							<tr class = "info">
+							<tr>
 								<td>Assigned Members: <%= p.users.count%></td>
 							</tr>
-							<tr class = "info">
+							<tr>
 								<td><%= link_to "View Details", project_path(p.id), class: "btn btn-primary"%>
 							</tr>
 						</tbody>

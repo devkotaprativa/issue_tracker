@@ -1,26 +1,26 @@
 <div class = "container-fluid">
 	<div class = "row">
 		<div class = "col-sm-6">
-			<table class="table table-hover">
+			<table class="table table-hover project">
 				<thead>
 					<tr>
 					<th>Name: <%= @project.project_name %></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class = "info">
+					<tr>
 						<td>Start Date: <%= @project.start_date %></td>
 					</tr>
-					<tr class = "info">
+					<tr>
 						<td>Target Date: <%= @project.target_end_date %></td>
 					</tr>
-					<tr class = "info">
+					<tr>
 						<td>End Date: <%= @project.final_end_date %></td>
 					</tr>
-					<tr class = "info">
+					<tr>
 						<td>Number of Assigned Members: <%= @members.count%></td>
 					</tr>
-					<tr class = "info">
+					<tr>
 						<td><% if @project.created_by == current_user.id.to_s %>
 							<%= link_to "Edit", edit_project_path(@project.id), class: "btn btn-primary"%>
 							<% end %>
@@ -33,7 +33,7 @@
 		<div class = "col-sm-6">
 			<table class = "table table-hover">
 				<thead>
-					<tr>
+					<tr class = "success">
 						<th>Project Members</th>
 					</tr>
 				</thead>
@@ -48,8 +48,9 @@
 		</div>
 	</div>
 	<div class = "row">
+		<div class = "issue"><h3>Project Issues</h3></div>
 		<div class = "col-sm-12">
-			<table class = "table table-hover">
+			<table class = "table table-hover project">
 				<thead>
 					<tr>
 						<th>Title</th>
@@ -70,7 +71,7 @@
 									<% if is_onprocess(i) and is_assigned(i)%>
 										<%= link_to "set complete",project_issue_issues_complete_path(@project.id, i.id), method: :post%>
 									<% end %>
-									
+
 									<% if is_pending(i) and is_assigned(i)%>
 										<%= link_to "set processing",project_issue_issues_processing_path(@project.id, i.id)%>
 									<%end%>

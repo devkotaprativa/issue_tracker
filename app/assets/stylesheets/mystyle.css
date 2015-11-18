@@ -9,7 +9,7 @@
   padding: 20px 29px 5px;
   margin: 20px auto 20px;
   /*background-color: #E9F0E9;*/
-  background: rgba(200, 200, 200, 0.4);
+  background: #C9EA9C;
   border: 1px solid #EFE0E0;
   -webkit-border-radius: 5px;
   	-moz-border-radius: 5px;
@@ -32,10 +32,26 @@
   padding: 7px 9px;
 }
 .project{
-  background: #D6F5F5;
+  background: #C9EA9C;
   padding: 10px;
 
 }
-.form-control{
-  width: 80%;
+.navbar-collapse{
+  background-color: #3C7113;
+}
+.issue{
+  text-align: center;
+  background-color: #87BC5E;
+  margin: 14px;
+  padding: 1px;
+
+}
+.menu{
+  float: left;
+  padding: 15px;
+  font-size: 18px;
+  line-height: 20px;
+  height: 50px;
+  color: white
+}
 }
