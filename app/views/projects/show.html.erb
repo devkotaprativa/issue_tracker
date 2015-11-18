@@ -57,6 +57,7 @@
 						<th>Priority</th>
 						<th>Status</th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -74,11 +75,40 @@
 									<%= link_to "Assign", project_issue_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id), class: "btn btn-primary"%>
 									<% end %>
 							</td>
+							<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-<%= i.id%>">View Details</button></td>
+						</tr>
+						<tr><!-- Modal -->
+						<div id="myModal-<%=i.id%>" class="modal fade" role="dialog">
+						  <div class="modal-dialog">
+
+						    <!-- Modal content-->
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h4 class="modal-title"><%= i.title %></h4>
+						      </div>
+						      <div class="modal-body">
+						        <p><%= i.description%></p>
+						        <p> Assigned To: 
+						        	<% i.users.each do|u|%></p>
+							        <p><%= u.email%></p>
+							       	<% end %>
+							      <p>Status: <%= i.status%></p>
+							      <p>Priority: <%= i.priority%></p>
+							      <p>Deadline: <%= i.deadline%></p>
+							      </p>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
+						    </div>
+
+						  </div>
+						</div>
 						</tr>
 					<% end %>
 				</tbody>
 			</table>
-
 		</div>
 	</div>
 </div>
+
