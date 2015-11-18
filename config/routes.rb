@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post 'issues/add_members'
       post 'issues/complete'
       get 'issues/show_members'
+      get 'issues/processing'
     end
     collection do
       get 'show_members'

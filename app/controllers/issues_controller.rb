@@ -69,8 +69,13 @@ class IssuesController < ApplicationController
   def complete
     @issue = Issue.find(params[:issue_id])
     @issue.completed!
+    redirect_to project_path(@issue.project_id)  
+  end
+
+  def processing
+    @issue = Issue.find(params[:issue_id])
+    @issue.processing!
     redirect_to project_path(@issue.project_id)
-    
   end
 
   private
