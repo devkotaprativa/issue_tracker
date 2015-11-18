@@ -31,3 +31,11 @@
   margin-bottom: 15px;
   padding: 7px 9px;
 }
+.project{
+  background: #D6F5F5;
+  padding: 10px;
+
+}
+.form-control{
+  width: 80%;
+}
