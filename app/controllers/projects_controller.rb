@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!, :except => [:home]
+  
   def index
-    
     @assigned_projects = current_user.projects
     @projects = Project.where(:created_by => current_user.id)
   end
@@ -101,8 +101,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def home
-    
+  def home 
   end
 
   private

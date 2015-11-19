@@ -59,3 +59,10 @@
   padding: 20px;
   background-color: #C9EA9C;
 }
+.alert{
+  text-align: center;
+  font-size: 1.5em;
+}
+.table{
+  font-size: 1.2em
+}
