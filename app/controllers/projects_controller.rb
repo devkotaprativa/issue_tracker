@@ -24,11 +24,10 @@ class ProjectsController < ApplicationController
     @project.created_by = current_user.id
     if @project.save
       flash[:notice] = "Project successfully created"
-      redirect_to projects_path
     else
       flash[:notice] = "Project cannot be created"
-      redirect_to projects_path
     end
+    redirect_to projects_path
   end
 
   def edit
@@ -36,8 +35,13 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
-    if @project.destroy
+    project = Project.find(params[:id])
+    users = project.users
+    if users.present?
+      members = Assignment.where(:project_id => project.id)
+      members.destroy_all
+    end
+    if project.destroy
       flash[:notice] = "successfully deleted"
     else
       flash[:notice] = "Could not delete the project"
