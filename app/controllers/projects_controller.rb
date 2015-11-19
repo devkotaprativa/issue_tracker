@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @members = @project.users
-    @issue = @project.issues
+    @issue = @project.issues.order(:status, created_at: :desc)
   end
 
   def new
