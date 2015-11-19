@@ -14,13 +14,13 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>Start Date: <%= p.start_date %></td>
+								<td>Start Date: <%= date(p.start_date) %></td>
 							</tr>
 							<tr>
-								<td>Target Date: <%= p.target_end_date %></td>
+								<td>Target Date: <%= date(p.target_end_date) %></td>
 							</tr>
 							<tr>
-								<td>End Date: <%= p.final_end_date %></td>
+								<td>End Date: <%= date(p.final_end_date) %></td>
 							</tr>
 							<tr>
 								<td>Assigned Members: <%= p.users.count%></td>

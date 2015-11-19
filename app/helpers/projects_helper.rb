@@ -22,4 +22,9 @@ module ProjectsHelper
 			return false
 		end
 	end
+
+	def date date
+		date.to_date.to_formatted_s(:long_ordinal)
+		
+	end
 end

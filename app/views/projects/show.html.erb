@@ -9,13 +9,13 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>Start Date: <%= @project.start_date %></td>
+						<td>Start Date: <%= date(@project.start_date) %></td>
 					</tr>
 					<tr>
-						<td>Target Date: <%= @project.target_end_date %></td>
+						<td>Target Date: <%= date(@project.target_end_date) %></td>
 					</tr>
 					<tr>
-						<td>End Date: <%= @project.final_end_date %></td>
+						<td>End Date: <%= date(@project.final_end_date) %></td>
 					</tr>
 					<tr>
 						<td>Number of Assigned Members: <%= @members.count%></td>
