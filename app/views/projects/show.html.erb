@@ -71,13 +71,13 @@
 							<td><%= i.priority%></td>
 							<td><%= i.status%><br>
 									<% if is_onprocess(i) and is_assigned(i)%>
-										<%= link_to "set complete",project_issue_issues_complete_path(@project.id, i.id), method: :post%>
+										<%= link_to "set complete",project_issue_issues_complete_path(@project.id, i.id), method: :post, data: {:confirm=> "Are you sure?"}%>
 									<% end %>
 									<% if is_pending(i) and is_assigned(i)%>
-										<%= link_to "set processing",project_issue_issues_processing_path(@project.id, i.id)%>
+										<%= link_to "set processing",project_issue_issues_processing_path(@project.id, i.id), method: :post, data: {:confirm=> "Are you sure?"}%>
 									<%end%>
 									<% if is_complete(i) and created_by(@project)%>
-										<%= link_to "Reopen?",project_issue_issues_reopen_path(@project.id, i.id)%>
+										<%= link_to "Reopen?",project_issue_issues_reopen_path(@project.id, i.id), method: :post, data: {:confirm=> "Are you sure?"}%>
 									<% end %>
 							</td>
 							<td><p><%= i.users.count%> Members</p></td>
