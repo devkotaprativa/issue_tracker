@@ -58,8 +58,12 @@ class ProjectsController < ApplicationController
   end
 
   def show_members
+    
     @users = User.all
     @project_id = params[:project_id]
+    @project = Project.find(params[:project])
+    @members = @project.users
+   
   end
 
   def add_members
