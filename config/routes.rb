@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'show_members'
+      post 'remove_members'
     end
   end
   

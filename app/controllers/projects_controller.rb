@@ -59,9 +59,8 @@ class ProjectsController < ApplicationController
 
   def show_members
     @users = User.all
-    @project = Project.find(params[:project])
+    @project = Project.find(params[:project_id])
     @members = @project.users
-   
   end
 
   def add_members
@@ -72,21 +71,33 @@ class ProjectsController < ApplicationController
         if Assignment.where(:user_id => id, :project_id => project_id).blank?
            if Assignment.create(:user_id => id, :project_id => project_id)
             flash[:notice] = "Succeessfully added the members"
-            #redirect_to projects_path
           else
             flash[:alert] = "Could not add the members"
-            #redirect_to projects_path
           end
         else 
           flash[:alert] = "Slected member is already assigned to the project."
-          #redirect_to projects_path
         end
-        #redirect_to projects_path
       end
       redirect_to projects_path
     else
       flash[:notice] = "Please select at least one member"
-      redirect_to projects_show_members_path
+      redirect_to show_members_projects_path(:project_id => project_id)
+    end
+  end
+
+  def remove_members
+    ids = params[:user_ids]
+    project_id = params[:project_id]
+    if ids.present?
+      ids.each do |i|
+        user = Assignment.where(:user_id => i, :project_id => project_id)
+        if user.first.destroy
+          flash[:notice] = "Succeessfully Removed!!!"
+        else
+          flash[:alert] = "Could not remove the user"
+        end
+        redirect_to show_members_projects_path(:project_id => project_id)
+      end
     end
   end
 
