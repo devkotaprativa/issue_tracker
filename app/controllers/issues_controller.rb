@@ -42,7 +42,6 @@ class IssuesController < ApplicationController
 
   def add_members
     ids = params[:user_ids]
-    issue_id = params[:issue_id]
     project_id = params[:project_id]
     @issue = Issue.find(params[:issue_id])
     if ids.present?
@@ -60,8 +59,27 @@ class IssuesController < ApplicationController
       redirect_to project_path(project_id)
     else
       flash[:notice] = "Please select at least one member"
-      redirect_to project_issue_issues_show_members_path(project_id, issue_id)
+      redirect_to project_issue_issues_show_members_path(project_id, @issue.id)
     end
+  end
+
+  def remove_members
+    ids = params[:user_ids]
+    @issue = Issue.find(params[:issue_id])
+    project_id = params[:project_id]
+    if ids.present?
+      ids.each do |i|
+        user = UserIssue.where(:user_id => i, :issue_id => @issue.id)
+        if user.first.destroy
+          flash[:notice] = "Succeessfully Removed"
+        else
+          flash[:notice] = "Could not Delete the user"
+        end
+      end
+    else
+     flash[:notice] = "Please select atleast one member"
+    end
+     redirect_to project_issue_issues_show_members_path(project_id, @issue.id)
   end
 
   def complete

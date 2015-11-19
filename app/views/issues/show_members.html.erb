@@ -7,7 +7,7 @@
 					<tbody>
 						<% @users.each do |u| %>
 						<tr>
-							<td><%= check_box_tag "user_ids[]", u.id%>
+							<td><%= check_box_tag "user_ids[]", u.id, false, :disabled=>is_assigned_to_issue(@issue, u.id)%>
 							<%= u.email %><td>
 						<% end %>
 						</tr>
@@ -21,15 +21,23 @@
 		</div>
 		<div class = "col-sm-6">
 			<h2>Assigned Members</h2>
-			<table class = "table table-hover">
-				<tbody>
-					<% @members.each do |m|%>
-					<tr>
-						<td><%= m.email %></td>
-					<% end %>
-					</tr>
-				</tbody>
-			</table>
+			<% if @members.present?%>
+				<%= form_tag project_issue_issues_remove_members_path(@project.id, @issue.id) do%>
+					<table class = "table table-hover">
+						<tbody>
+							<% @members.each do |m|%>
+							<tr>
+								<td><%= check_box_tag "user_ids[]", m.id%>
+									<%= m.email %></td>
+							<% end %>
+							</tr>
+							<tr>
+								<td><%= submit_tag ("Remove selected members")%></td>
+							</tr>
+						</tbody>
+					</table>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 </div>

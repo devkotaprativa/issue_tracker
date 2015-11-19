@@ -29,9 +29,7 @@ module ProjectsHelper
 	end
 
 	def is_assigned_to_project project, user_id
-		
 		user = Assignment.where(:user_id => user_id, :project_id => project.id)
 		user.present?
-		
 	end
 end
