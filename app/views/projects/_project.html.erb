@@ -1,7 +1,6 @@
 <%= form_for [@project] do |p|%>
 	<div class = "form">
 		<div class="project">
-			<h3>Add New Project</h3>
 			<ul>
 		    <% @project.errors.full_messages.each do |error| %>
 		    <li><%= error %></li>
