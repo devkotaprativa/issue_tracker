@@ -49,16 +49,18 @@ class IssuesController < ApplicationController
         if UserIssue.where(:user_id => id, :issue_id => @issue.id).blank?
            if UserIssue.create(:user_id => id, :issue_id => @issue.id)
             flash[:notice] = "Succeessfully added the members"
-            redirect_to project_path(project_id)
+            # redirect_to project_path(project_id)
           else
             flash[:alert] = "Could not add the members"
-            redirect_to project_path(project_id)
+            # redirect_to project_path(project_id)
           end
+          # redirect_to project_path(project_id)
         else 
           flash[:alert] = "Slected member is already assigned to the project."
-          redirect_to project_path(project_id)
+          # redirect_to project_path(project_id)
         end
       end
+      redirect_to project_path(project_id)
     else
       flash[:notice] = "Please select at least one member"
       redirect_to project_issue_issues_show_members_path(project_id, issue_id)

@@ -16,9 +16,6 @@ module ProjectsHelper
 			users = issue.users
 			users.each do|u|
 				if u.id == current_user.id
-					return true
-				else
-					return false
 				end
 			end
 		else
