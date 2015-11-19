@@ -4,14 +4,14 @@
 			<h2>Available users</h2>
 			<%= form_tag projects_add_members_path, method: :post do%>
 				<% @users.each do |u| %>
-					<%= check_box_tag "user_ids[]", u.id%>
+					<%= check_box_tag "user_ids[]", u.id, false, :disabled=>is_assigned_to_project(@project, u.id)%>
 					<%= u.email %><br>
 				<% end %>
-				<%= hidden_field_tag "project_id", @project_id%>
+				<%= hidden_field_tag "project_id", @project.id%>
 
 				<%= submit_tag ("add selected members")%>
 			<% end %><br>
-			<
+			
 		</div>
 		<div class = "col-sm-6">
 			<h2>Project Members</h2>
