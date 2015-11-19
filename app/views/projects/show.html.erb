@@ -57,7 +57,8 @@
 						<th>Deadline</th>
 						<th>Priority</th>
 						<th>Status</th>
-						<th></th>
+						<th>Assigned To</th>
+						<th>Assign/Remove</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -79,8 +80,9 @@
 										<%= link_to "Reopen?",project_issue_issues_reopen_path(@project.id, i.id)%>
 									<% end %>
 							</td>
+							<td><p><%= i.users.count%> Members</p></td>
 							<td><% if created_by(@project)%>
-									<%= link_to "Assign", project_issue_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id), class: "btn btn-primary"%>
+									<%= link_to "Assign/Remove", project_issue_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id), class: "btn btn-primary"%>
 									<% end %>
 							</td>
 							<td><% if created_by(@project) %>
