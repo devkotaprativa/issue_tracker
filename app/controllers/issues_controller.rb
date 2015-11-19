@@ -36,7 +36,8 @@ class IssuesController < ApplicationController
   def show_members
     @project = Project.find(params[:project_id])
     @users = @project.users
-    @issue_id = params[:issue_id]
+    @issue = Issue.find(params[:issue_id])
+    @members = @issue.users
   end
 
   def add_members
@@ -49,15 +50,11 @@ class IssuesController < ApplicationController
         if UserIssue.where(:user_id => id, :issue_id => @issue.id).blank?
            if UserIssue.create(:user_id => id, :issue_id => @issue.id)
             flash[:notice] = "Succeessfully added the members"
-            # redirect_to project_path(project_id)
           else
             flash[:alert] = "Could not add the members"
-            # redirect_to project_path(project_id)
           end
-          # redirect_to project_path(project_id)
         else 
           flash[:alert] = "Slected member is already assigned to the project."
-          # redirect_to project_path(project_id)
         end
       end
       redirect_to project_path(project_id)
