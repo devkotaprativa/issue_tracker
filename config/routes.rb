@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'issues/show_members'
       get 'issues/processing'
       post 'issues/remove_members'
+      get 'issues/reopen'
     end
     collection do
       get 'show_members'

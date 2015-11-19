@@ -106,6 +106,12 @@ class IssuesController < ApplicationController
     redirect_to project_path(@issue.project_id)
   end
 
+  def reopen
+    @issue = Issue.find(params[:issue_id])
+    @issue.pending!
+    redirect_to project_path(@issue.project_id)
+  end
+
   private
   def set_params
     params.require(:issue).permit(:title, :description, :deadline, :priority, :status)

@@ -10,6 +10,10 @@ module ProjectsHelper
 	def is_pending issue
 		issue.status == "pending"
 	end
+	def is_complete issue
+		issue.status == "completed"
+		
+	end
 
 	def is_assigned issue
 		if issue.users.present?
@@ -24,8 +28,9 @@ module ProjectsHelper
 	end
 
 	def date date
-		date.to_date.to_formatted_s(:long_ordinal)
-		
+		if date.present?
+			date.to_date.to_formatted_s(:long_ordinal)
+		end
 	end
 
 	def is_assigned_to_project project, user_id
