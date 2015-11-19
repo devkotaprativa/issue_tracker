@@ -59,6 +59,7 @@
 						<th>Status</th>
 						<th></th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -79,6 +80,7 @@
 									<%= link_to "Assign", project_issue_issues_show_members_path( :project_id => i.project_id, :issue_id => i.id), class: "btn btn-primary"%>
 									<% end %>
 							</td>
+							<td><%= link_to "Delete", project_issue_path(@project.id, i.id), class: "btn btn-primary", method: :delete, data: {:confirm=> "Are you sure?"}%></td>
 							<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-<%= i.id%>">View Details</button></td>
 						</tr>
 						<tr><!-- Modal -->

@@ -17,6 +17,19 @@ class IssuesController < ApplicationController
   end
 
   def destroy
+    project = Project.find(params[:project_id])
+    issue = Issue.find(params[:id])
+    users = issue.users
+    if users.present?
+      members = UserIssue.where(:issue_id => issue.id)
+      members.destroy_all
+    end
+    if issue.destroy
+      flash[:notice] = "Succeessfully Deleted"
+    else
+      flash[:notice] = "Could not Delete the Isse"
+    end
+    redirect_to project_path(project.id)
   end
 
   def create
@@ -26,11 +39,10 @@ class IssuesController < ApplicationController
     @issue.status = 0
     if @issue.save
       flash[:notice] = "Issue successfully created"
-      redirect_to project_path(@project.id)
     else
       flash[:notice] = "Issue was not created"
-      redirect_to project_path(@project.id)
     end
+    redirect_to project_path(@project.id)
   end
 
   def show_members

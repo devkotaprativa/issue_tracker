@@ -39,11 +39,10 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.destroy
       flash[:notice] = "successfully deleted"
-      redirect_to projects_path
     else
       flash[:notice] = "Could not delete the project"
-      redirect_to projects_path
     end
+    redirect_to projects_path
   end
 
   def update
