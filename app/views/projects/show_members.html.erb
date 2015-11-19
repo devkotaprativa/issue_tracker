@@ -1,13 +1,14 @@
-<div class = "container available-user">
-	<h2>Available users</h2>
-	<%= form_tag projects_add_members_path, method: :post do%>
-		<% @users.each do |u| %>
-			<%= check_box_tag "user_ids[]", u.id%>
-			<%= u.email %><br>
-		<% end %>
-		<%= hidden_field_tag "project_id", @project_id%>
 
-		<%= submit_tag ("add selected members")%>
-	<% end %><br>
-	<%= link_to "Back To Projects", projects_path, class: "btn btn-primary" %>
-</div>
+	<div class = "available-user">
+		<h2>Available users</h2>
+		<%= form_tag projects_add_members_path, method: :post do%>
+			<% @users.each do |u| %>
+				<%= check_box_tag "user_ids[]", u.id%>
+				<%= u.email %><br>
+			<% end %>
+			<%= hidden_field_tag "project_id", @project_id%>
+
+			<%= submit_tag ("add selected members")%>
+		<% end %><br>
+		<%= link_to "Back To Projects", projects_path, class: "btn btn-primary" %>
+	</div>
