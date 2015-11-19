@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   def index
     @assigned_projects = current_user.projects
     @projects = Project.where(:created_by => current_user.id)
+    @current_user_projects = current_user.projects
   end
 
   def show

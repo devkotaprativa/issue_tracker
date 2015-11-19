@@ -1,5 +1,6 @@
 <div class = "container-fluid">
 	<%= link_to "Create New Project", new_project_path, class: "btn btn-primary"%>
+	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-<%= current_user.id%>">View Tasks</button>
 	<div class = "row">
 		<% if @projects.present? %>
 			<div class = "issue"><h3>Your Projects</h3></div>
@@ -69,4 +70,47 @@
 			<% end %>
 		<% end %>
 	</div>
+</div>
+<div id="myModal-<%=current_user.id%>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Assigned Tasks</h4>
+      </div>
+      <div class="modal-body">
+      	<div class = "project">
+	      	<table class = "table table-hover">
+	    			<thead>
+	      			<tr>
+	      				<th>Project Name</th>
+	      				<th>Issue Title</th>
+	      				<th>Issue Status</th>
+	      				<th>Issue Deadline</th>
+	      			</tr>
+	    			</thead>
+	        	<% @current_user_projects.each do|t|%>
+	    				<% t.issues.each do |i|%>
+	    					<% if is_assigned(i)%>
+		        			<tbody>
+		        				<tr>
+			        				<td><%= link_to i.project.project_name, project_path(i.project_id)%></td>
+			        				<td><%= i.title %></td>
+			        			  <td><%= i.status %></td>
+			        			  <td> <%= i.deadline %></td>
+			        			</tr>
+	    						<% end %>
+	    						</tbody>
+	    				<% end %>
+		       	<% end %>
+		      </table>
+	     	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
