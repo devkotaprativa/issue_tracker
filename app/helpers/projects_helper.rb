@@ -19,8 +19,7 @@ module ProjectsHelper
 		if issue.users.present?
 			users = issue.users
 			users.each do|u|
-				if u.id == current_user.id
-				end
+				 u.id == current_user.id
 			end
 		else
 			return false

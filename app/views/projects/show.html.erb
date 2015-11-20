@@ -73,7 +73,7 @@
 									<% if is_onprocess(i) and is_assigned(i)%>
 										<%= link_to "set complete",project_issue_issues_complete_path(@project.id, i.id), method: :post, data: {:confirm=> "Are you sure?"}%>
 									<% end %>
-									<% if is_pending(i) and is_assigned(i)%>
+									<% if is_pending(i) and is_assigned_to_issue(i, current_user.id)%>
 										<%= link_to "set processing",project_issue_issues_processing_path(@project.id, i.id), method: :post, data: {:confirm=> "Are you sure?"}%>
 									<%end%>
 									<% if is_complete(i) and created_by(@project)%>
