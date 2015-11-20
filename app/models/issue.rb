@@ -4,6 +4,7 @@ class Issue < ActiveRecord::Base
   enum priority: [:Low, :Normal, :High]
   has_many :user_issues
   has_many :users, through: :user_issues
+  validates :title, :description, :deadline, :priority, :presence => true 
 
 
 end
